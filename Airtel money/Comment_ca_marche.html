@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comment ça marche - Airtel Money (Version Pro)</title>
+  <style>
+    :root{
+      --red: #ef1c23;
+      --red-600: #ef1c23;
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 10px 30px rgba(16,24,40,0.08);
+      --radius: 16px;
+      --container:1200px;
+      --accent: linear-gradient(135deg,var(--red),#ef1c23);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg,#fff 0%, #fafafa 60%);
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Header */
+    header{
+      background:var(--card-bg);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      backdrop-filter: blur(6px);
+      position:sticky;top:0;z-index:50;
+      box-shadow: 0 4px 18px rgba(16,24,40,0.06);
+    }
+    .header-content{
+      max-width:var(--container);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .logo-circle{width:46px;height:46px;border-radius:10px;background:var(--red);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:20px;box-shadow:0 6px 20px rgba(227,6,19,0.18)}
+    .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e30613;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+    .brand-text{display:flex;flex-direction:column}
+    .brand-text .title{color:var(--red);font-weight:800;letter-spacing:0.6px}
+    .brand-text .subtitle{font-size:12px;color:var(--muted);margin-top:2px}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .btn-primary{background:var(--red);color:#fff;padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 6px 20px rgba(227,6,19,0.12);transition:transform .18s ease}
+    .btn-primary:hover{transform:translateY(-3px)}
+
+    /* Hero */
+    .hero{
+      max-width:var(--container);margin:24px auto 0;padding:40px 24px;border-radius:18px;background:var(--accent);color:white;box-shadow:0 20px 60px rgba(227,6,19,0.12);overflow:hidden;
+      display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:center;
+    }
+    .hero h1{font-size:34px;margin-bottom:8px;line-height:1.05}
+    .hero p{opacity:0.95;color:rgba(255,255,255,0.95);font-size:16px}
+    .hero-visual{display:flex;justify-content:center}
+    .hero-visual img{width:260px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+
+    /* Container */
+    .wrapper{max-width:var(--container);margin:36px auto;padding:0 24px}
+
+    /* Steps grid */
+    .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .card{
+      background:var(--card-bg);border-radius:var(--radius);padding:18px;display:flex;gap:18px;align-items:flex-start;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(16,24,40,0.12)}
+    .card .img{
+      min-width:110px;height:110px;border-radius:12px;overflow:hidden;flex-shrink:0;border:2px solid rgba(227,6,19,0.06);background:#fff;display:flex;align-items:center;justify-content:center
+    }
+    .card .img img{width:100%;height:100%;object-fit:cover;display:block}
+    .card .content{flex:1}
+    .card h3{color:var(--red);margin-bottom:6px;font-size:20px}
+    .card p{color:var(--muted);margin-bottom:10px}
+    .card ul{list-style:none;padding-left:0;margin:0}
+    .card li{padding:8px 0;padding-left:18px;position:relative;color:#333;border-bottom:1px solid rgba(15,23,42,0.03)}
+    .card li:before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:800}
+
+    /* Step number badge */
+    .badge-step{position:absolute;top:16px;right:16px;background:rgba(227,6,19,0.06);color:var(--red);padding:8px 12px;border-radius:999px;font-weight:700}
+
+    /* Payment section full width */
+    .payment{
+      grid-column:1/-1;margin-top:6px;padding:22px;border-radius:14px;background:linear-gradient(180deg,rgba(227,6,19,0.03),rgba(255,255,255,0.9));border:1px solid rgba(227,6,19,0.06);display:flex;gap:18px;align-items:center
+    }
+    .payment .left{flex:1}
+    .payment .right {width: 390px;}
+    .payment h3{color:var(--red);margin-bottom:8px}
+    .payment p{color:var(--muted);margin-bottom:12px}
+    .steps-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+    /* CTA */
+    .cta-full{margin-top:26px;padding:28px;border-radius:14px;background:var(--red);color:white;text-align:center}
+    .cta-full h2{margin-bottom:8px}
+    .cta-full a{display:inline-block;margin-top:8px;background:white;color:var(--red);padding:12px 26px;border-radius:999px;text-decoration:none;font-weight:800}
+
+    footer{max-width:var(--container);margin:32px auto;padding:28px 24px;color:var(--muted);font-size:14px}
+
+    /* FAQ Styles */
+    .faq-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--red);
+      margin-bottom: 16px;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(16,24,40,0.12);
+    }
+
+    
+
+    .faq-answer {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(227, 6, 19, 0.1);
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+      color: var(--red);
+      font-size: 20px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .support-cta a {
+      transition: transform 0.2s ease;
+    }
+
+    .support-cta a:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Responsiveness */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;gap:18px;padding:28px}
+      .steps{grid-template-columns:1fr}
+      .payment{flex-direction:column}
+      .hero-visual img{width:220px}
+      .card .img{min-width:100px;height:100px}
+    }
+
+    @media (max-width: 768px) {
+      .support-cta div {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .support-cta a {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+      }
+    }
+
+    /* Simple entrance animations */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .revealed{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a class="brand" href="index.html">
+        <div class="logo-circle"><img src="../image/Airtel_logo.jpg" alt="Airtel Congo" class="logo-img"></div>
+        <div class="brand-text">
+          <div class="title">Airtel Money</div>
+          <div class="subtitle">Comment ça marche</div>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a class="btn-primary" href="../airtel-money.html">Accueil</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="hero" role="main" aria-labelledby="hero-title">
+    <div>
+      <h1 id="hero-title">Comment ça marche — Airtel Money</h1>
+      <p>Suivez ces étapes simples pour activer, recharger, utiliser et sécuriser votre compte Airtel Money. Tout est pensé pour être rapide, sûr et accessible.</p>
+      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#steps" class="btn-primary">Voir les étapes</a>
+        <a href="#payment" style="background:rgba(255,255,255,0.12);color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:700">Paiement via MyAirtel</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img src="../image/Airtel_logo.jpg" alt="Illustration Airtel Money" />
+    </div>
+  </main>
+
+  <section class="wrapper" id="steps">
+    <div class="steps" aria-label="Étapes Airtel Money">
+
+      <!-- Step 1 -->
+      <article class="card reveal" tabindex="0">
+        <div class="img"><img src="../image/Logo_Airtel.jpg" alt="Inscription"/></div>
+        <div class="content">
+          <h3>Inscription & activation</h3>
+          <p>Créer et activer votre compte en moins de 2 minutes via USSD.</p>
+          <ul>
+            <li>Composez <strong>*155#</strong> depuis votre ligne Airtel</li>
+            <li>Sélectionnez « S'inscrire » et suivez les instructions</li>
+            <li>Choisissez un PIN à 4 chiffres sécurisé</li>
+          </ul>
+        </div>
+        <div class="badge-step">1</div>
+      </article>
+
+      <!-- Step 2 -->
+      <article class="card reveal" tabindex="0">
+        <div class="img"><img src="../image/Logo_Airtel.jpg" alt="Alimenter compte"/></div>
+        <div class="content">
+          <h3>Alimenter votre compte</h3>
+          <p>Plusieurs voies pour recharger : agents, points de vente ou transferts.</p>
+          <ul>
+            <li>Chez un agent ou point de vente agréé</li>
+            <li>Transfert depuis une banque ou une autre ligne Airtel Money</li>
+            <li>Conservez le SMS de confirmation comme preuve</li>
+          </ul>
+        </div>
+        <div class="badge-step">2</div>
+      </article>
+
+      <!-- Step 3 -->
+      <article class="card reveal" tabindex="0">
+        <div class="img"><img src="../image/Logo_Airtel.jpg" alt="Utiliser services"/></div>
+        <div class="content">
+          <h3>Utiliser les services</h3>
+          <p>Payer factures, envoyer de l'argent, acheter du crédit — tout est disponible via *155# ou MyAirtel.</p>
+          <ul>
+            <li>Envoyer de l'argent à un proche</li>
+            <li>Payer l'électricité, l'eau et autres factures</li>
+            <li>Acheter du crédit / internet avec bonus</li>
+          </ul>
+        </div>
+        <div class="badge-step">3</div>
+      </article>
+
+      <!-- Step 4 -->
+      <article class="card reveal" tabindex="0">
+        <div class="img"><img src="../image/Logo_Airtel.jpg" alt="Sécurité"/></div>
+        <div class="content">
+          <h3>Sécurité & conseils</h3>
+          <p>Quelques bonnes pratiques pour protéger votre argent et vos données.</p>
+          <ul>
+            <li>Ne partagez jamais votre PIN</li>
+            <li>Changez régulièrement votre PIN via *155*6#</li>
+            <li>Bloquez votre compte immédiatement en cas de perte</li>
+          </ul>
+        </div>
+        <div class="badge-step">4</div>
+      </article>
+
+      <!-- Payment section (full width) -->
+      <div class="payment reveal" id="payment" tabindex="0" aria-labelledby="pay-title">
+        <div class="left">
+          <h3 id="pay-title">Payer via MyAirtel (détail)</h3>
+          <p>Utilisez l'application MyAirtel pour régler vos factures (électricité, eau, internet) en toute sécurité — sans frais de déplacement.</p>
+
+          <ol style="color:var(--muted);margin-left:18px">
+            <li>Ouvrez l'application <strong>MyAirtel</strong> (ou connectez-vous si nécessaire)</li>
+            <li>Allez dans <strong>Pay Bill</strong> &gt; sélectionnez <strong>Electricity</strong> (ou autre service)</li>
+            <li>Choisissez votre fournisseur, entrez la référence/numéro compteur</li>
+            <li>Vérifiez le montant, confirmez avec votre PIN Airtel Money</li>
+            <li>Vous recevez un SMS & reçu numérique instantané</li>
+          </ol>
+
+          <p style="margin-top:10px;color:var(--muted)"><strong>Astuce :</strong> Enregistrez vos références pour un paiement encore plus rapide la prochaine fois.</p>
+        </div>
+        <div class="right">
+          <img src="image002.png" alt="MyAirtel app" style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.12)"/>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-full reveal" id="start" tabindex="0">
+      <h2>Prêt à commencer avec Airtel Money ?</h2>
+      <a href="#steps">Je veux m'inscrire</a>
+    </div>
+
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="wrapper" id="faq">
+    <div class="faq-header reveal" style="text-align: center; margin-bottom: 40px;">
+      <h2 style="color: var(--red); font-size: 32px; margin-bottom: 12px;">Questions Fréquentes</h2>
+      <p style="color: var(--muted); max-width: 600px; margin: 0 auto;">Trouvez rapidement des réponses à vos questions sur Airtel Money</p>
+    </div>
+
+    <div class="faq-grid" style="display: grid; gap: 20px; max-width: 900px; margin: 0 auto;">
+      
+      <!-- Question 1 -->
+      <div class="faq-item reveal">
+        <div class="faq-question" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; cursor: pointer;">
+          <div style="flex: 1;">
+            <h3 style="color: var(--red); margin-bottom: 8px; font-size: 18px;">Qu'est-ce qu'Airtel Money ?</h3>
+            <div class="faq-answer">
+              <p>Airtel Money est un service financier mobile sécurisé qui transforme votre téléphone en porte-monnaie électronique, vous permettant d'effectuer diverses opérations sans compte bancaire traditionnel.</p>
+              <div style="margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <span style="display: flex; align-items: center; gap: 6px;">
+                  <span style="color: var(--red); font-weight: bold;">•</span> Paiement de factures
+                </span>
+                <span style="display: flex; align-items: center; gap: 6px;">
+                  <span style="color: var(--red); font-weight: bold;">•</span> Transferts d'argent
+                </span>
+                <span style="display: flex; align-items: center; gap: 6px;">
+                  <span style="color: var(--red); font-weight: bold;">•</span> Achat de crédit
+                </span>
+                <span style="display: flex; align-items: center; gap: 6px;">
+                  <span style="color: var(--red); font-weight: bold;">•</span> Retraits d'espèces
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="faq-icon">+</div>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="faq-item reveal">
+        <div class="faq-question" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; cursor: pointer;">
+          <div style="flex: 1;">
+            <h3 style="color: var(--red); margin-bottom: 8px; font-size: 18px;">Comment créer mon compte Airtel Money ?</h3>
+            <div class="faq-answer">
+              <p>L'activation de votre compte se fait en 3 étapes simples :</p>
+              <ol style="margin: 12px 0 12px 20px; color: var(--muted);">
+                <li>Composez <strong>*155#</strong> depuis votre ligne Airtel</li>
+                <li>Sélectionnez "S'inscrire" et suivez les instructions</li>
+                <li>Choisissez un code PIN sécurisé à 4 chiffres</li>
+              </ol>
+              <p style="background: rgba(227, 6, 19, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--red);">
+                <strong>Conseil de sécurité :</strong> Changez votre code PIN immédiatement après la première connexion via *155*6#
+              </p>
+            </div>
+          </div>
+          <div class="faq-icon">+</div>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="faq-item reveal">
+        <div class="faq-question" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; cursor: pointer;">
+          <div style="flex: 1;">
+            <h3 style="color: var(--red); margin-bottom: 8px; font-size: 18px;">Quels services puis-je payer avec Airtel Money ?</h3>
+            <div class="faq-answer">
+              <p>Airtel Money vous permet de régler tous vos services essentiels :</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0;">
+                <div style="flex: 1; min-width: 150px;">
+                  <h4 style="color: var(--red); font-size: 14px; margin-bottom: 8px;">Services publics</h4>
+                  <ul style="color: var(--muted); font-size: 14px; list-style: none; padding: 0;">
+                    <li>• Électricité (SNE)</li>
+                    <li>• Eau (SNDE)</li>
+                    <li>• Factures diverses</li>
+                  </ul>
+                </div>
+                <div style="flex: 1; min-width: 150px;">
+                  <h4 style="color: var(--red); font-size: 14px; margin-bottom: 8px;">Divertissement</h4>
+                  <ul style="color: var(--muted); font-size: 14px; list-style: none; padding: 0;">
+                    <li>• Canal+</li>
+                    <li>• TNT Africa</li>
+                    <li>• Startimes</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq-icon">+</div>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="faq-item reveal">
+        <div class="faq-question" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; cursor: pointer;">
+          <div style="flex: 1;">
+            <h3 style="color: var(--red); margin-bottom: 8px; font-size: 18px;">Que faire en cas de problème ou de perte de téléphone ?</h3>
+            <div class="faq-answer">
+              <p>Votre sécurité est notre priorité :</p>
+              <ul style="margin: 12px 0 12px 20px; color: var(--muted);">
+                <li><strong>Perte de téléphone :</strong> Contactez immédiatement le service client au 111 pour bloquer votre compte</li>
+                <li><strong>Problème de transaction :</strong> Conservez le SMS de confirmation et contactez le support</li>
+                <li><strong>Code PIN oublié :</strong> Rendez-vous dans un point de service Airtel avec une pièce d'identité</li>
+              </ul>
+            </div>
+          </div>
+          <div class="faq-icon">+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Support CTA -->
+    <div class="support-cta reveal" style="background: linear-gradient(135deg, var(--red), #ff5a5a); color: white; padding: 30px; border-radius: var(--radius); text-align: center; margin-top: 40px;">
+      <h3 style="margin-bottom: 12px; font-size: 24px;">Besoin d'aide personnalisée ?</h3>
+      <p style="margin-bottom: 20px; opacity: 0.9;">Notre équipe support est disponible pour vous accompagner</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="tel:111" style="background: white; color: var(--red); padding: 12px 24px; border-radius: 999px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+          📞 Appeler le 111
+        </a>
+        <a href="#" style="background: rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 999px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+          💬 Chat en ligne
+        </a>
+        <a href="#" style="background: rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 999px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+          📍 Points de vente
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>&copy; 2025 <strong>Airtel Money</strong> — Service client : <strong>111</strong></div>
+  </footer>
+
+  <script>
+    // Simple reveal on scroll
+    const revealed = (el) => el.classList.add('revealed');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) revealed(e.target); });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Keyboard accessibility: focus to first step when pressing C (for commencer)
+    document.addEventListener('keydown', (ev) => {
+      if(ev.key.toLowerCase() === 'c'){
+        const step = document.querySelector('.card');
+        if(step) step.focus();
+      }
+    });
+
+    // Script pour l'interactivité des FAQ
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+          // Fermer tous les autres items
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('active');
+            }
+          });
+          
+          // Basculer l'item actuel
+          item.classList.toggle('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

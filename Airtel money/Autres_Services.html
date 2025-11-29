@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Airtel Money</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(to bottom, #f9fafb, #ffffff);
+            color: #333;
+            opacity: 0;
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-circle {
+            width: 48px;
+            height: 48px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-airtel {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc2626;
+        }
+
+        .logo-money {
+            font-size: 0.875rem;
+            color: #ef4444;
+        }
+
+         .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e30613;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .portal-link{background:var(--red);color:#af3030;padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 6px 20px rgba(227,6,19,0.12);transition:transform .18s ease}
+    .portal-link:hover{transform:translateY(-3px)}
+
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #fef2f2, white);
+            padding: 4rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-left: 4px solid #dc2626;
+        }
+
+        .hero-card h2 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .countries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .country-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            animation: bounceIn 0.6s ease-out backwards;
+        }
+
+        .country-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+
+        .bg-green { background: #5c0404; }
+        .bg-blue { background: #5c0404; }
+        .bg-yellow { background: #5c0404; }
+        .bg-red { background: #5c0404; }
+        .bg-green-dark { background: #5c0404; }
+        .bg-yellow-dark { background: #5c0404; }
+
+        .hero-right {
+            position: relative;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, #f87171, #374151);
+            border-radius: 1.5rem;
+            transform: rotate(3deg);
+        }
+
+        .hero-content {
+            position: relative;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 16rem;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .info-container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: linear-gradient(to right, #f9fafb, white);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #fef2f2;
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .accordion-number {
+            width: 32px;
+            height: 32px;
+            background: #dc2626;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+
+        .accordion-icon {
+            width: 24px;
+            height: 24px;
+            color: #dc2626;
+            transition: transform 0.3s;
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+        }
+
+        .accordion-body {
+            padding: 1.25rem 1.5rem;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            color: #374151;
+            line-height: 1.75;
+            white-space: pre-line;
+        }
+
+        /* IMT Section */
+        .imt-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, #fef2f2, white);
+        }
+
+        .imt-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .imt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .imt-image-wrapper {
+            position: relative;
+        }
+
+        .imt-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, #374151, #f87171);
+            border-radius: 1.5rem;
+            transform: rotate(-3deg);
+        }
+
+        .imt-content {
+            position: relative;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .imt-image {
+            width: 100%;
+            height: 16rem;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .partner-badge {
+            background: linear-gradient(to bottom right, #ef4444, #dc2626);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .partner-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+
+        .imt-text h2 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 2rem;
+        }
+
+        .imt-description {
+            font-size: 1.125rem;
+            color: #374151;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .imt-feature {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .imt-feature-icon {
+            width: 64px;
+            height: 64px;
+            color: #dc2626;
+        }
+
+        .imt-feature h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .imt-feature p {
+            color: #6b7280;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.25rem;
+            color: #fecaca;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: #dc2626;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #f3f4f6;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container,
+            .imt-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-card h2 {
+                font-size: 1.25rem;
+            }
+
+            .imt-text h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../image/Airtel_Logo.jpg" alt="Airtel Congo" class="logo-img">
+                <div class="logo-text">
+                    <div class="logo-airtel">airtel</div>
+                    <div class="logo-money">money</div>
+                </div>
+            </div>
+            <div class="nav-actions"><a href="../airtel-money.html" class="portal-link">Accueil</a></div>  
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1 class="hero-title">Services Airtel Money</h1>
+                <div class="hero-card">
+                    <h2>TRANSFÉREZ DE L'ARGENT PAR AIRTEL MONEY AU-DELÀ DES FRONTIÈRES</h2>
+                    <p class="hero-subtitle">C'EST DÉSORMAIS POSSIBLE AVEC LE SERVICE GIMACPAY</p>
+                    <div class="countries">
+                        <div class="country-badge bg-green" style="animation-delay: 0s">🇬🇦 Gabon</div>
+                        <div class="country-badge bg-blue" style="animation-delay: 0.1s">🇨🇫 Centrafrique</div>
+                        <div class="country-badge bg-yellow" style="animation-delay: 0.2s">🇹🇩 Tchad</div>
+                        <div class="country-badge bg-red" style="animation-delay: 0.3s">🇨🇬 Congo</div>
+                        <div class="country-badge bg-green-dark" style="animation-delay: 0.4s">🇰🇪 Kenya</div>
+                        <div class="country-badge bg-yellow-dark" style="animation-delay: 0.5s">🇺🇬 Ouganda</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-bg"></div>
+                <div class="hero-content">
+                    <img src="../image/GIMAC.jpeg" alt="Mobile Money" class="hero-image">
+                    <div class="features">
+                        <div>
+                            <svg class="feature-icon" fill="none" stroke="#dc2626" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                            </svg>
+                            <p class="feature-text">Envoi rapide</p>
+                        </div>
+                        <div>
+                            <svg class="feature-icon" fill="none" stroke="#dc2626" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <p class="feature-text">International</p>
+                        </div>
+                        <div>
+                            <svg class="feature-icon" fill="none" stroke="#dc2626" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <p class="feature-text">Sécurisé</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GIMACPAY Info -->
+    <section class="info-section">
+        <div class="info-container">
+            <div class="accordion-item" style="animation-delay: 0s">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">
+                        <span class="accordion-number">1</span>
+                        C'est quoi GIMACPAY ?
+                    </span>
+                    <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">C’est un service d’Airtel Money qui vous permet d’envoyer et recevoir de l’argent instantanément dans la zone CEMAC (Congo Brazzaville, Cameroun, Gabon, Tchad, Centrafrique et Guinée Equatoriale) à partir du téléphone portable vers n’importe quel opérateur de téléphonie mobile (Exemple Orange money Cameroun) ou n’importe quelle institution bancaire (Exemple : UBA Cameroun) où que vous soyez et quel que soit l’heure tant que vous êtes couverts par le réseau.
+
+Vous pouvez aussi retirer de l’argent sur les distributeurs automatiques des banques du réseau GIMAC dans la zone CEMAC à l’aide d’un code généré depuis votre téléphone via le menu GIMAC.</div>
+            </div>
+
+            <div class="accordion-item" style="animation-delay: 0.15s">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">
+                        <span class="accordion-number">2</span>
+                        Comment ça fonctionne ?
+                    </span>
+                    <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body"> Pour envoyer de l’argent :
+
+Composer tout simplement *128# :
+
+Etape 1 : Choisissez option 8 : GIMACPAY
+
+Etape 2 : choisir 1 : transfert d’argent
+
+Etape 3 : choisir 1 : Transfert CEMAC
+
+Etape 4 : choisir la destination
+
+Etape 5 : choisir le moyen de transaction
+
+Etape 6 : entrer le numéro
+
+Etape 7 : entrer le montant
+
+Etape 8 : entrer le mot de passe
+
+- Pour retirer de l’argent depuis un GAB :
+
+1. Etape 1 : Choisissez option 8 : GIMACPAY
+
+2. Etape 2 : choisir 2 : Mise à disposition GAB
+
+3. Etape 3 : Entrer le montant (coupure de 5.000FCFA)
+
+4. Etape 4 : Entrer le mot de passe puis valider</div>
+                </div>
+            </div>
+
+            <div class="accordion-item" style="animation-delay: 0.3s">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">
+                        <span class="accordion-number">3</span>
+                        Quels sont les avantages du service Gimacpay ?
+                    </span>
+                    <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">• Envoyer et recevoir de l’argent directement et instantanément à partir de votre compte Airtel money vers tous les opérateurs de téléphonie mobile dans la zone CEMAC
+
+• Minimum d’envoi de 100F seulement !
+
+• Faire instantanément votre virement depuis votre compte bancaire vers Airtel money et vice versa, et, ce depuis toutes les institutions bancaires de la zone CEMAC
+
+• Tarifs les moins chers pour les transferts d’argents
+
+• Retrait d’argent 24h/24 et 7j/7 dans tous les distributeurs du réseau GIMAC dans tous les pays de la CEMAC</div>
+                </div>
+            </div>
+
+               <div class="accordion-item" style="animation-delay: 0.15s">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">
+                        <span class="accordion-number">4</span>
+                        Quels sont les tarifs?
+                    </span>
+                    <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body"> Les frais d'envoi à partir de 500 FCFA
+                      0 FCFA pour les frais de reception
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- IMT Section -->
+    <section class="imt-section">
+        <div class="imt-container">
+            <div class="imt-grid">
+                <div class="imt-image-wrapper">
+                    <div class="imt-bg"></div>
+                    <div class="imt-content">
+                        <img src="../image/Transfert inter Afrique .jpeg" alt="International Transfer" class="imt-image">
+                        <div class="partners-grid">
+                            <div class="partner-badge">Ria</div>
+                            <div class="partner-badge">Western Union</div>
+                            <div class="partner-badge">MoneyGram</div>
+                            <div class="partner-badge">WorldRemit</div>
+                            <div class="partner-badge">Small World</div>
+                            <div class="partner-badge">Remitly</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="imt-text">
+                    <h2>Transfert d'argent à l'international (Reception)</h2>
+                    <p class="imt-description">Recevez et envoyez de l'argent partout dans le monde grâce à nos partenaires de confiance.</p>
+                    <div class="imt-feature">
+                        <svg class="imt-feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                        </svg>
+                        <div>
+                            <h3>Plus de 100 pays</h3>
+                            <p>Transférez vers le monde entier en quelques clics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMT Info -->
+            <div class="info-container">
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-title">
+                            <span class="accordion-number">1</span>
+                            C'est quoi le transfert d'argent à l'International (Reception)?
+                        </span>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">Transfert d'argent à l'international est un service qui vous permet de recevoir de l'argent de l’international directement dans votre compte Airtel Money depuis la France, la Belgique, les Pays-Bas, le Canada, les USA, l’Italie, l’Australie, la Norvège, le Danemark, la Finlande, l’Espagne, la Suède, l’Irlande…</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-title">
+                            <span class="accordion-number">2</span>
+                            Comment ça fonctionne ?
+                        </span>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">Que fait l’expéditeur depuis l’Etranger pour transférer de l’argent directement dans un compte Airtel Money ?
+
+Il se rend à une agence de transfert d’argent ou à son site web pour effectuer la transaction.
+
+· Money gram
+
+· Western union
+
+· Worldremit
+
+· Talkremit
+
+· Orange Money France
+
+· Mama money
+
+· Paysend
+
+· Homeland
+
+· Remitly
+
+· RIA
+
+· Etc…</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-title">
+                            <span class="accordion-number">3</span>
+                            Lors du transfert d'argent, l'expéditeur donne :
+                        </span>
+                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">1- Le nom du bénéficiaire,
+
+2- Les fonds à transférer,
+
+3- Le numéro Airtel du bénéficiaire,
+
+4- L’identité du bénéficiaire
+
+En initiant le transfert, le bénéficiaire reçoit instantanément un dépôt d’argent dans son compte Airtel Money</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Commencez à transférer dès maintenant</h2>
+            <p class="cta-subtitle">Simple, rapide et sécurisé avec Airtel Money</p>
+            <button class="cta-button">Découvrir les services</button>
+        </div>
+    </section>
+
+    <script>
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.accordion-icon');
+            const isActive = content.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.accordion-icon').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked accordion if it was closed
+            if (!isActive) {
+                content.classList.add('active');
+                icon.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfert d'argent Congo - Airtel Money</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --airtel-red: #e30613;
+            --airtel-red-light: rgba(226, 12, 24, 0.1);
+            --airtel-red-hover: #c10510;
+            --airtel-white: #ffffff;
+            --airtel-gray: #666666;
+            --airtel-gray-light: #f5f5f5;
+            --airtel-gray-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--airtel-gray-light);
+            color: var(--airtel-gray-dark);
+            overflow-x: hidden;
+            padding-top: 0;
+        }
+
+        /* Header simplifié */
+        .airtel-money-header {
+            background: var(--airtel-white);
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .money-header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--airtel-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .portal-link {
+            background: var(--airtel-red);
+            color: var(--airtel-white);
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .portal-link:hover {
+            background: var(--airtel-red-hover);
+            color: var(--airtel-white);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section réduite */
+        .hero-section {
+            background: linear-gradient(135deg, var(--airtel-red) 0%, #c71212 100%);
+            color: var(--airtel-white);
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        /* Section argent rapide remplacée par image */
+        .argent-rapide-section {
+            background: var(--airtel-white);
+            padding: 40px 0;
+        }
+
+        
+
+        .image-placeholder {
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            background: var(--airtel-gray-light);
+            border: 2px dashed var(--airtel-gray);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--airtel-gray);
+            font-size: 1.2rem;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Tarifs Section */
+        .tarifs-section {
+            background: var(--airtel-gray-light);
+            padding: 60px 0;
+        }
+
+        .section-title {
+            color: var(--airtel-red);
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--airtel-red);
+            border-radius: 2px;
+        }
+
+        .table-custom {
+            background: var(--airtel-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .table-custom thead {
+            background: var(--airtel-red);
+            color: var(--airtel-white);
+        }
+
+        .table-custom th {
+            border: none;
+            padding: 20px;
+            font-weight: 600;
+        }
+
+        .table-custom td {
+            padding: 20px;
+            border-color: #f0f0f0;
+            vertical-align: middle;
+        }
+
+        .row-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--airtel-red-light);
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--airtel-red);
+        }
+
+        .tarif-price {
+            background: var(--airtel-red);
+            color: var(--airtel-white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Section bonus avec images */
+        .bonus-section {
+            background: var(--airtel-white);
+            padding: 60px 0;
+        }
+
+        .bonus-image-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .bonus-image {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+            max-height: 300px;
+            object-fit: cover;
+            background: var(--airtel-gray-light);
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bonus-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--airtel-red) 0%, #c71212 100%);
+            color: var(--airtel-white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .btn-airtel {
+            background: var(--airtel-white);
+            color: var(--airtel-red);
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .btn-airtel:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.4);
+            color: var(--airtel-red);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--airtel-white);
+            padding: 50px 0 20px;
+            margin-top: 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-grid-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid-column h5 {
+            color: var(--airtel-gray-dark);
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .footer-grid-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-grid-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-grid-column ul li a {
+            color: var(--airtel-gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-grid-column ul li a:hover {
+            color: var(--airtel-red);
+        }
+
+        .footer-bottom-section {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            padding: 20px 20px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-bottom-links-extended {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-bottom-links-extended a {
+            color: var(--airtel-gray);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links-extended a:hover {
+            color: var(--airtel-red);
+        }
+
+        .copyright-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: var(--airtel-gray);
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--airtel-gray-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--airtel-white);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--airtel-red);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--airtel-red);
+            color: var(--airtel-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 5px 20px rgba(230,0,0,0.4);
+            transition: transform 0.3s;
+            z-index: 1000;
+            border: none;
+            display: none;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            color: var(--airtel-white);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .bonus-image-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .footer-grid-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom-links-extended {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .money-header-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .cta-title {
+                font-size: 1.8rem;
+            }
+
+            .bonus-image-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .bonus-image {
+                max-height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .logo-img {
+                height: 30px;
+            }
+            
+            .bonus-image {
+                min-height: 180px;
+                max-height: 220px;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Airtel Money simplifié -->
+    <div class="airtel-money-header">
+        <div class="money-header-container">
+            <!-- Logo Airtel -->
+            <a href="index.html" class="logo">
+                <img src="../image/Airtel_Logo.jpg" alt="Airtel Congo" class="logo-img">
+                airtel
+            </a>
+
+            <a href="../airtel-money.html" class="portal-link">
+                <i class="fas fa-home me-2"></i>ACCUEIL AIRTEL MONEY
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section réduite -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="hero-title">
+                        <i class="fas fa-money-bill-transfer me-3"></i>Transfert d'argent au Congo
+                    </h1>
+                    <p class="hero-subtitle">Simple, rapide et économique avec Airtel Money</p>
+                    <a href="#tarifs" class="btn btn-light btn-lg">
+                        <i class="fas fa-list me-2"></i>Voir nos tarifs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Argent Rapidement - Remplacée par image -->
+    <section class="argent-rapide-section">
+        <div class="container">
+            <div class="row">
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs Section -->
+    <section class="tarifs-section" id="tarifs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title text-center">
+                        <i class="fas fa-tags me-3"></i>Nos tarifs
+                    </h2>
+                    
+                    <div class="table-responsive animate-on-scroll">
+                        <table class="table table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Type d'opération</th>
+                                    <th class="text-center">Coût FCFA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="row-icon">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </div>
+                                        Transfert d'argent (client airtel vers client airtel)
+                                    </td>
+                                    <td class="text-center"><span class="tarif-price">50F</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="row-icon">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </div>
+                                        Retrait d'argent (Cash-out)
+                                    </td>
+                                    <td class="text-center"><span class="tarif-price">3,5% – max 5000F</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="row-icon">
+                                            <i class="fas fa-share-square"></i>
+                                        </div>
+                                        Envoi Airtel money vers les autres opérateurs
+                                    </td>
+                                    <td class="text-center"><span class="tarif-price">1%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Bonus - Remplacée par images -->
+    <section class="bonus-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-title text-center">
+                        <i class="fas fa-gift me-3"></i>Bonus et avantages
+                    </h2>
+                    
+                    <div class="bonus-image-container">
+                        <!-- Remplacez ces divs par vos images -->
+                        
+                        
+                        <img src="Airtel Money voyage2.jpeg" alt="Bonus 1" class="bonus-image">
+                        <img src="Airtel Money Taxi.jpeg" alt="Bonus 2" class="bonus-image">
+                        <img src="image002.png" alt="Bonus 3" class="bonus-image">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="cta-title">Commencez à transférer maintenant</h2>
+                    <p class="cta-subtitle">Simple, rapide et économique avec Airtel Money</p>
+                    <button class="btn-airtel" onclick="startTransfer()">
+                        <i class="fas fa-play me-2"></i>Effectuer un transfert
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid-section">
+            <div class="footer-grid-column">
+                <h5>A propos d'Airtel</h5>
+                <ul>
+                    <li><a href="#">Accès rapide</a></li>
+                    <li><a href="#">Aide</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Carrière</h5>
+                <ul>
+                    <li><a href="#">Actualités</a></li>
+                    <li><a href="#">Couverture</a></li>
+                    <li><a href="#">Chiffre Safety</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Media</h5>
+                <ul>
+                    <li><a href="#">Programmes sociaux/CSR</a></li>
+                    <li><a href="#">Nos Boutiques</a></li>
+                    <li><a href="#">Besoin de Suggestion</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Airtel Money</h5>
+                <ul>
+                    <li><a href="#">Cataloger d'interconnexion</a></li>
+                    <li><a href="#">Numéros utiles</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-section">
+            <div class="footer-bottom-links-extended">
+                <a href="#">NOUS CONTRACTER</a>
+                <a href="#">DROITS D'AUTEUR</a>
+                <a href="#">TERMES ET CONDITIONS</a>
+                <a href="#">AU TERMES ET CONDITIONS GSM</a>
+                <a href="#">AVIS DE CONFIDENTIALITÉ</a>
+            </div>
+        </div>
+
+        <div class="copyright-section">
+            <p>© 2024 Airtel Africa. Tous les droits sont réservés.</p>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </footer>
+
+    <button class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialiser les icônes Lucide
+        lucide.createIcons();
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Afficher/masquer le bouton back-to-top
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        // Fonction pour remonter en haut de la page
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Fonction pour démarrer un transfert
+        function startTransfer() {
+            alert('Pour effectuer un transfert, composez *555# sur votre téléphone ou rendez-vous dans votre application Airtel Money.');
+        }
+
+        // Animation du hero
+        window.addEventListener('load', () => {
+            document.querySelector('.hero-content').style.opacity = '1';
+        });
+    </script>
+</body>
+</html>

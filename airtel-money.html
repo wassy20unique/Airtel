@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtel Money Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --airtel-red: #e02424;
+            --airtel-gray: #666;
+            --light-gray: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+        }
+
+        /* Header Top */
+        .header-top {
+            background: white;
+            padding: 0.5rem 0;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: right;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .header-top a {
+            color: black;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .header-top a:hover {
+            color: var(--airtel-red);
+        }
+
+        /* Main Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: left;
+        }
+
+        .logo-circle {
+            width: 30px;
+            height: 30px;
+            background: var(--airtel-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        .brand-text .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--airtel-red);
+        }
+
+        .brand-text .subtitle {
+            font-size: 0.9rem;
+            color: var(--airtel-gray);
+        }
+
+        /* Hero Section with Slider */
+        .hero {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 62, 62, 0.3);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .slider-btn.prev {
+            left: 20px;
+        }
+
+        .slider-btn.next {
+            right: 20px;
+        }
+
+        .dots-navigation {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--airtel-red);
+            margin-bottom: 3rem;
+        }
+
+        /* Image + Text Section */
+        .image-text-section {
+            background: white;
+        }
+
+        .image-text-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .image-text-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .image-text-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-text-text {
+            flex: 1;
+        }
+
+        .image-text-text h3 {
+            font-size: 1.8rem;
+            color: var(--airtel-red);
+            margin-bottom: 1.5rem;
+        }
+
+        .image-text-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--airtel-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Bonus Section */
+        .bonus-section {
+            background: var(--airtel-red);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .bonus-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .bonus-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .bonus-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Comment ça marche Section */
+        .comment-section {
+            background: var(--light-gray);
+        }
+
+        .comment-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .comment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(224, 36, 36, 0.2);
+        }
+
+        .comment-card.active {
+            box-shadow: 0 0 0 4px rgba(224, 36, 36, 0.3);
+        }
+
+        .comment-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--airtel-red);
+            font-size: 2rem;
+        }
+
+        .comment-card h3 {
+            color: var(--airtel-red);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .comment-card p {
+            color: var(--airtel-gray);
+            line-height: 1.6;
+        }
+
+        .btn-savoir-plus {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            background: var(--airtel-red);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-savoir-plus:hover {
+            background: #c41e1e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(224, 36, 36, 0.4);
+            color: white;
+        }
+
+        /* Offres Section */
+        .offers-section {
+            background: white;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .offer-card {
+            background: var(--light-gray);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .offer-card:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(224, 36, 36, 0.15);
+        }
+
+        .offer-card.active {
+            box-shadow: 0 0 0 4px rgba(224, 36, 36, 0.3);
+        }
+
+        .offer-card h3 {
+            color: var(--airtel-red);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .offer-card p {
+            color: var(--airtel-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Promotions Section */
+        .promos-section {
+            background: var(--light-gray);
+        }
+
+        .promo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(224, 36, 36, 0.2);
+        }
+
+        .promo-card.active {
+            box-shadow: 0 0 0 4px rgba(224, 36, 36, 0.3);
+        }
+
+        .promo-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .promo-card h3 {
+            color: var(--airtel-red);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .promo-card p {
+            color: var(--airtel-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0;
+            color: var(--airtel-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-top-content {
+                gap: 1rem;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .slider-btn {
+                padding: 0.5rem 1rem;
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .image-text-content {
+                flex-direction: column;
+            }
+
+            .offers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 2.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="header-top-content">
+            <a href="index.html">INDIVIDUEL</a>
+            <a href="#">ENTREPRISE</a>
+            <a href="#">BROADBAND</a>
+            <a href="#">AIRTEL MONEY PORTAL</a>
+            <a href="#">À PROPOS DE NOUS</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-circle">A</div>
+                <div class="brand-text">
+                    <div class="title">Airtel Money</div>
+                    <div class="subtitle">Services Financiers</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section avec Slider -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('image/1.png');"></div>
+            <div class="slide" style="background-image: url('image/Airtel_Money.png');"></div>
+            <div class="slide" style="background-image: url('image/Offre\ Routeur2.jpeg');"></div>
+        </div>
+        
+        <div class="dots-navigation">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+        <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
+        <button class="slider-btn next" onclick="changeSlide(1)">›</button>
+    </section>
+
+    <!-- Nouvelle section Image + Texte -->
+    <section class="section image-text-section">
+        <div class="container">
+            <div class="image-text-content">
+                <div class="image-text-image">
+                    <img src="image/Offre Routeur.jpeg" alt="Airtel Money Services">
+                </div>
+                <div class="image-text-text">
+                    <h3>Découvrez Airtel Money</h3>
+                    <p>Airtel Money révolutionne votre façon de gérer vos finances. Avec notre plateforme sécurisée, effectuez des transactions en toute simplicité, où que vous soyez et à tout moment.</p>
+                    <p>Que ce soit pour envoyer de l'argent à vos proches, payer vos factures ou recharger votre téléphone, Airtel Money vous offre une solution complète et accessible.</p>
+                    <a href="#en-savoir-plus" class="btn-savoir-plus">
+                        EN SAVOIR PLUS <span class="ms-2">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section Comment ça marche -->
+    <section class="section comment-section">
+        <div class="container">
+            <h2 class="section-title">Comment ça marche</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="comment-card" onclick="highlightCard(this)">
+                        <div class="comment-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>1. Inscrivez-vous</h3>
+                        <p>Composez *128# pour créer votre compte Airtel Money en quelques secondes</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="comment-card" onclick="highlightCard(this)">
+                        <div class="comment-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h3>2. Rechargez</h3>
+                        <p>Alimentez votre compte via nos points de service ou par transfert</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="comment-card" onclick="highlightCard(this)">
+                        <div class="comment-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>3. Utilisez</h3>
+                        <p>Effectuez vos transactions en toute sécurité et simplicité</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="Airtel money/Comment_ca_marche.html" class="btn-savoir-plus">
+                    EN SAVOIR PLUS <span class="ms-2">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Nos Offres -->
+    <section class="section offers-section">
+        <div class="container">
+            <h2 class="section-title">Nos Offres</h2>
+            <div class="offers-grid">
+                <a href="Airtel money/Transfert.html" class="offer-card" onclick="highlightCard(this); return false;">
+                    <h3>Transfert D'argent</h3>
+                    <p>Envoyez de l'argent à vos proches rapidement et en toute sécurité, partout au Congo</p>
+                </a>
+                <a href="Airtel money/Piement_Facture.html" class="offer-card" onclick="highlightCard(this); return false;">
+                    <h3>Paiement Facture</h3>
+                    <p>Payez vos factures d'électricité, d'eau, internet et bien plus encore en un clic</p>
+                </a>
+                <a href="Airtel money/Banque.html" class="offer-card" onclick="highlightCard(this); return false;">
+                    <h3>Banque</h3>
+                    <p>Connectez votre compte bancaire et effectuez des transactions facilement</p>
+                </a>
+                <a href="Airtel money/Autres_Services.html" class="offer-card" onclick="highlightCard(this); return false;">
+                    <h3>Autres Services</h3>
+                    <p>Recharge de crédit, achats en ligne, et bien d'autres services disponibles</p>
+                </a>
+                <a href="Airtel money/Tarifs.html" class="offer-card" onclick="return true;">
+                    <h3>Tarifs</h3>
+                    <p>Découvrez nos tarifs compétitifs pour tous nos services</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Nos Promotions -->
+    <section class="section promos-section">
+        <div class="container">
+            <h2 class="section-title">Nos Promotions</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="promo-card" onclick="highlightCard(this)">
+                        <img src="image/Airtel Money voyage1.jpeg" 
+                             alt="Promotion Airtel Money" 
+                             class="promo-image">
+                        <h3>Offres Exceptionnelles</h3>
+                        <p>Profitez de nos promotions exclusives et gagnez des bonus sur vos transactions. Plus vous utilisez Airtel Money, plus vous êtes récompensé. Composez *626# pour découvrir toutes nos offres du moment.</p>
+                        <a href="#promos-details" class="btn-savoir-plus">
+                            DÉCOUVRIR LES PROMOS <span class="ms-2">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Airtel Money. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            currentSlide++;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Highlight card on click
+        function highlightCard(element) {
+            // Remove active class from all cards
+            document.querySelectorAll('.comment-card, .offer-card, .promo-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Add active class to clicked card
+            element.classList.add('active');
+            
+            // Remove after 2 seconds
+            setTimeout(() => {
+                element.classList.remove('active');
+            }, 2000);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#promos-details') {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

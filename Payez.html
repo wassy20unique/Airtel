@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtel Congo - Payez et Rechargez</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .animate-slideDown {
+            animation: slideDown 0.4s ease-out;
+        }
+
+        .animate-slideUp {
+            animation: slideUp 0.3s ease-out;
+        }
+
+        /* Navigation Styles */
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e30613;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-links>li {
+            position: relative;
+        }
+
+        .nav-links>li>a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            padding: 1rem 0;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .nav-links>li>a:hover,
+        .nav-links>li>a.active {
+            color: #dc2626;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-links>li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            position: relative;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: #374151;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .sub-dropdown {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu li:hover .sub-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .third-level {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .sub-dropdown li:hover .third-level {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .arrow {
+            font-size: 0.875rem;
+            margin-left: 0.5rem;
+        }
+
+        .header-top {
+            background: white;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: right;
+            gap: 2rem;
+        }
+
+        .header-top-content a {
+            color: black;
+        
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .header-top-content a:hover {
+            color: #fca5a5;
+        }
+
+        /* Styles pour les sous-menus supplémentaires */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .dropdown-menu .has-submenu>a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown-menu .sub-level {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu .has-submenu:hover .sub-level {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        /* Animation pour l'indicateur de sous-menu */
+        .arrow {
+            font-size: 0.875rem;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .has-submenu:hover .arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            padding: 60px 80px 30px;
+            margin-top: 4rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-grid-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .footer-grid-column h5 {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        .footer-grid-column ul {
+            list-style: none;
+        }
+
+        .footer-grid-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-grid-column ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-grid-column ul li a:hover {
+            color: #e30613;
+        }
+
+        .footer-bottom-section {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding-top: 20px;
+        }
+
+        .footer-bottom-links-extended {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-bottom-links-extended a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links-extended a:hover {
+            color: #e30613;
+        }
+
+        .copyright-section {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .social-link:hover {
+            background: #e30613;
+            color: white;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #e30613;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 5px 20px rgba(227, 6, 19, 0.4);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding-left: 1rem;
+            }
+
+            .sub-dropdown,
+            .third-level {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="header-top-content">
+            <a href="index.html">INDIVIDUEL</a>
+            <a href="entreprise.html">ENTREPRISE</a>
+            <a href="broadband.html">BROADBAND</a>
+            <a href="airtel-money.html">AIRTEL MONEY PORTAL</a>
+            <a href="about.html">À PROPOS DE NOUS</a>
+        </div>
+    </div>
+
+    <!-- Navigation Principale -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <!-- Logo Airtel -->
+                <a href="index.html" class="logo">
+                <img src="image/Airtel_Logo.jpg" alt="Airtel Congo" class="logo-img">
+                airtel
+            </a>
+
+            <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                <i data-lucide="menu"></i>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <!-- PAYEZ ET RECHARGEZ -->
+                <li>
+                    <a href="paiement-recharge.html" class="active">PAYEZ ET RECHARGEZ</a>
+                    <ul class="dropdown-menu">
+                        <!-- Postpayé avec sous-menu -->
+                        <li class="has-submenu">
+                            <a href="#" data-section="postpaye">Postpayé <span class="arrow">›</span></a>
+                            <ul class="sub-level">
+                                <li><a href="#" data-section="postpaye" data-subsection="postpaye-payment">Paiement de
+                                        facture en ligne</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Prépayé avec sous-menu -->
+                        <li class="has-submenu">
+                            <a href="#" data-section="prepaye">Prépayé <span class="arrow">›</span></a>
+                            <ul class="sub-level">
+                                <li><a href="#" data-section="prepaye" data-subsection="prepaye-recharge">Rechargez un
+                                        compte prépayé</a></li>
+                                <li><a href="#" data-section="prepaye" data-subsection="prepaye-forfait">Activez un
+                                        forfait Internet</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Broadband (sans sous-menu) -->
+                        <li><a href="#" data-section="broadband">Broadband</a></li>
+                    </ul>
+                </li>
+
+                <!-- SERVICES -->
+                <li>
+                    <a href="services.html">SERVICES</a>
+                    <ul class="dropdown-menu">
+                        <!-- PREPAYÉ - Niveau 1 -->
+                        <li>
+                            <a href="#">Prepayé <span class="arrow">›</span></a>
+                            <ul class="sub-dropdown">
+                                <!-- Appels & SMS - Niveau 2 -->
+                                <li>
+                                    <a href="#">Appels & SMS <span class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="appels-locaux.html">Appels locaux</a></li>
+                                        <li><a href="appels-internationaux.html">Appels internationaux</a></li>
+                                        <li><a href="sms.html">SMS</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Services Internet - Niveau 2 -->
+                                <li>
+                                    <a href="#" class="services-internet">Services Internet <span
+                                            class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="forfaits-internet.html">Forfaits internet</a></li>
+                                        <li><a href="faq-internet.html">Foire aux questions</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Roaming - Niveau 2 -->
+                                <li>
+                                    <a href="#" class="roaming">Roaming <span class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="airtel-world.html">Airtel world</a></li>
+                                        <li><a href="reseau-unique.html">Réseau Unique</a></li>
+                                        <li><a href="free-roaming.html">Free Roaming</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Services à valeur ajoutée - Niveau 2 -->
+                                <li>
+                                    <a href="#">Services à valeur ajoutée <span class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="musique.html">Musique</a></li>
+                                        <li><a href="divertissement.html">Divertissement</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Taxi Connect - Niveau 2 -->
+                                <li><a href="taxi-connect.html">Taxi Connect</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- NOS AGENCES -->
+                <li>
+                    <a href="Nos Agences.html">NOS AGENCES</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="airtel-shop.html">Airtel Shop</a></li>
+                        <li><a href="distributeurs.html">Distributeurs</a></li>
+                        <li><a href="couverture-reseau.html">Couverture réseau</a></li>
+                    </ul>
+                </li>
+
+                <!-- AIRTEL MONEY -->
+                <li>
+                    <a href="airtel-money.html">AIRTEL MONEY</a>
+                </li>
+
+                <!-- BESOIN D'AIDE -->
+                <li>
+                    <a href="aide.html">BESOIN D'AIDE</a>    
+                </li>
+
+                <!-- E-SIM -->
+                <li><a href="esim.html">E-SIM</a></li>
+
+                <!-- PROMOTIONS -->
+                <li>
+                    <a href="promotions.html">PROMO KELASI</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Postpayé Section -->
+        <div id="postpaye-section" class="page-section animate-fadeIn">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Paiement de la facture postpayée</h1>
+            <p class="text-gray-600 mb-8">Faisons votre paiement !</p>
+
+            <div class="bg-gradient-to-r from-red-700 to-red-600 rounded-lg p-8 shadow-lg">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="relative">
+                        <label class="text-white text-sm mb-2 block">Numéro de mobile</label>
+                        <div class="flex">
+                            <span class="bg-white bg-opacity-20 text-white px-4 py-3 rounded-l-lg">+242</span>
+                            <input type="text" id="postpaye-phone" placeholder="053974165"
+                                class="flex-1 px-4 py-3 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-white" />
+                        </div>
+                        <div id="postpaye-phone-error" class="hidden text-yellow-300 text-sm mt-2">
+                            <i data-lucide="alert-circle" class="inline w-4 h-4 mr-1"></i> Numéro invalide
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-white text-sm mb-2 block">Entrez le montant</label>
+                        <div class="flex">
+                            <span class="bg-white bg-opacity-20 text-white px-4 py-3 rounded-l-lg">CFA</span>
+                            <input type="number" id="postpaye-amount" placeholder="100"
+                                class="flex-1 px-4 py-3 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-white" />
+                        </div>
+                    </div>
+
+                    <div class="flex items-end">
+                        <button
+                            class="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                            FAIRE UN PAIEMENT
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prépayé Section -->
+        <div id="prepaye-section" class="page-section hidden">
+            <div class="mb-6 flex gap-4 border-b pb-2">
+                <button data-subsection="prepaye-recharge"
+                    class="subsection-btn pb-3 px-4 font-semibold transition-all text-red-600" >
+                    Rechargez un compte prépayé
+                </button>
+                <button data-subsection="prepaye-forfait"
+                    class="subsection-btn pb-3 px-4 font-semibold transition-all text-gray-600 hover:text-red-600">
+                    Activez un forfait Internet
+                </button>
+            </div>
+
+            <!-- Recharge Section -->
+            <div id="prepaye-recharge" class="subsection-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Recharge en ligne</h1>
+                <p class="text-gray-600 mb-8">Rechargez votre compte</p>
+
+                <div class="bg-gradient-to-r from-red-700 to-red-600 rounded-lg p-8 shadow-lg">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="text-white text-sm mb-2 block">Numéro de mobile</label>
+                            <div class="flex">
+                                <span class="bg-white bg-opacity-20 text-white px-4 py-3 rounded-l-lg">+242</span>
+                                <input type="text" id="prepaye-recharge-phone" placeholder="053974165"
+                                    class="flex-1 px-4 py-3 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-white" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-white text-sm mb-2 block">Entrez le montant</label>
+                            <div class="flex">
+                                <span class="bg-white bg-opacity-20 text-white px-4 py-3 rounded-l-lg">CFA</span>
+                                <input type="number" id="prepaye-recharge-amount" placeholder="100"
+                                    class="flex-1 px-4 py-3 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-white" />
+                            </div>
+                        </div>
+
+                        <div class="flex items-end">
+                            <button
+                                class="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                                ACHETER DU TEMPS D'APPEL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forfait Section -->
+            <div id="prepaye-forfait" class="subsection-content hidden">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Recharge ou acheter des forfaits</h1>
+
+                <div class="bg-gradient-to-r from-red-700 to-red-600 rounded-lg p-6 shadow-lg mb-8">
+                    <div class="max-w-md">
+                        <label class="text-white text-sm mb-2 block">Numéro de mobile</label>
+                        <div class="flex">
+                            <span class="bg-white bg-opacity-20 text-white px-4 py-3 rounded-l-lg">+242</span>
+                            <input type="text" id="prepaye-forfait-phone" placeholder="053974165"
+                                class="flex-1 px-4 py-3 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-white" />
+                            <button id="clear-phone"
+                                class="bg-white bg-opacity-20 text-white px-4 hover:bg-opacity-30 transition rounded-r-lg hidden">
+                                <i data-lucide="x" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        <div id="phone-validation" class="hidden text-sm mt-2">
+                            <span class="flex items-center gap-1"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="offers-section" class="hidden animate-slideDown">
+                    <p class="text-gray-600 mb-6">Pour acheter un forfait, cliquez sur l'une des options ci-dessous</p>
+
+                    <!-- Category Tabs -->
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <button data-category="combo"
+                            class="category-btn px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 bg-red-600 text-white shadow-lg">
+                            <i data-lucide="smartphone" class="inline mr-2 w-5 h-5"></i>
+                            Combo
+                        </button>
+                        <button data-category="data"
+                            class="category-btn px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 bg-white text-gray-700 hover:bg-gray-100">
+                            Data
+                        </button>
+                        <button data-category="sms"
+                            class="category-btn px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 bg-white text-gray-700 hover:bg-gray-100">
+                            SMS
+                        </button>
+                        <button data-category="voice"
+                            class="category-btn px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 bg-white text-gray-700 hover:bg-gray-100">
+                            Voice
+                        </button>
+                    </div>
+
+                    <!-- Period Filter -->
+                    <div class="flex gap-3 mb-8">
+                        <button data-period="tous"
+                            class="period-btn px-4 py-2 rounded-full text-sm font-medium bg-red-600 text-white">
+                            Tous
+                        </button>
+                        <button data-period="daily"
+                            class="period-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Daily
+                        </button>
+                        <button data-period="hour"
+                            class="period-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Hour
+                        </button>
+                        <button data-period="monthly"
+                            class="period-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Monthly
+                        </button>
+                        <button data-period="weekly"
+                            class="period-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Weekly
+                        </button>
+                    </div>
+
+                    <!-- Offers Table -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Forfaits
+                                        </th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Avantages
+                                        </th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Validité
+                                        </th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Prix</th>
+                                        <th class="px-6 py-4"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="offers-table-body" class="divide-y divide-gray-200">
+                                    <!-- Offers will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Broadband Section -->
+        <div id="broadband-section" class="page-section hidden">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Recharge Broadband</h1>
+            <p class="text-gray-600 mb-8">Rechargez votre connexion Internet</p>
+
+            <div class="bg-gradient-to-r from-red-700 to-red-600 rounded-lg p-8 shadow-lg">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="text-white text-sm mb-2 block">Numéro de compte</label>
+                        <input type="text" placeholder="Entrez votre numéro"
+                            class="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white" />
+                    </div>
+
+                    <div>
+                        <label class="text-white text-sm mb-2 block">Montant</label>
+                        <div class="flex">
+                            <span class="bg-white bg-opacity-20 text-white px-4 py-3 rounded-l-lg">CFA</span>
+                            <input type="number" placeholder="1000"
+                                class="flex-1 px-4 py-3 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-white" />
+                        </div>
+                    </div>
+
+                    <div class="flex items-end">
+                        <button
+                            class="w-full bg-white text-red-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                            RECHARGER
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 animate-slideUp">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-800">Choisir le mode de paiement</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="mb-6">
+                <p id="modal-offer-name" class="text-gray-600 mb-2">Offre: </p>
+                <p id="modal-offer-price" class="text-2xl font-bold text-red-600"></p>
+            </div>
+
+            <div class="space-y-4">
+                <button data-method="credit"
+                    class="payment-method-btn w-full p-4 border-2 rounded-lg flex items-center gap-3 transition-all border-gray-300 hover:border-red-400">
+                    <i data-lucide="credit-card" class="text-red-600 w-6 h-6"></i>
+                    <div class="text-left">
+                        <p class="font-semibold">Payer par crédit</p>
+                        <p class="text-sm text-gray-600">Utiliser votre crédit téléphonique</p>
+                    </div>
+                </button>
+
+                <button data-method="airtelmoney"
+                    class="payment-method-btn w-full p-4 border-2 rounded-lg flex items-center gap-3 transition-all border-gray-300 hover:border-red-400">
+                    <i data-lucide="wallet" class="text-red-600 w-6 h-6"></i>
+                    <div class="text-left">
+                        <p class="font-semibold">Airtel Money</p>
+                        <p class="text-sm text-gray-600">Payer avec votre compte Airtel Money</p>
+                    </div>
+                </button>
+            </div>
+
+            <button id="confirm-payment" disabled
+                class="w-full mt-6 py-3 rounded-lg font-semibold transition-all bg-gray-300 text-gray-500 cursor-not-allowed">
+                Confirmer le paiement
+            </button>
+        </div>
+    </div>
+
+
+     <!-- Footer adapté selon l'image -->
+    <footer>
+        <div class="footer-grid-section">
+            <div class="footer-grid-column">
+                <h5>A propos d'Artiel</h5>
+                <ul>
+                    <li><a href="#">Accès rapide</a></li>
+                    <li><a href="#">Aide</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Carrière</h5>
+                <ul>
+                    <li><a href="#">Actualités</a></li>
+                    <li><a href="#">Couverture</a></li>
+                    <li><a href="#">Chiffre Safety</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Media</h5>
+                <ul>
+                    <li><a href="#">Programmes sociaux/CSR</a></li>
+                    <li><a href="#">Nos Boutiques</a></li>
+                    <li><a href="#">Besoin de Suggestion</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Arnet Money</h5>
+                <ul>
+                    <li><a href="#">Cataloger d'interconnexion</a></li>
+                    <li><a href="#">Numéros utiles</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-section">
+            <div class="footer-bottom-links-extended">
+                <a href="#">NOUS CONTRACTER</a>
+                <a href="#">DROITS D'AUTEUR</a>
+                <a href="#">TERMES ET CONDITIONS</a>
+                <a href="#">AU TERMES ET CONDITIONS GSM</a>
+                <a href="#">AVIS DE CONFIDENTIALITÉ</a>
+            </div>
+        </div>
+
+        <div class="copyright-section">
+            <p>© 2024 Arnet Africa. Tous les droits sont réservés.</p>
+            <p style="margin-top: 10px;">RETOUR AU SOMMET</p>
+        </div>
+
+        <div class="social-links" style="justify-content: center; margin-top: 20px;">
+            <a href="#" class="social-link">T</a>
+            <!-- Ajoutez d'autres icônes sociales si nécessaire -->
+        </div>
+    </footer>
+
+    <script>
+        // Données des offres
+        const offers = {
+            combo: [
+                { name: 'Forfait MBIAKA', details: '250.0 MB, 10 Minutes, 10 SMS', validity: '1 Day', price: 'CFA 350' },
+                { name: 'Forfait MBIAKA', details: '1.0 GB, 40 Minutes, 40 SMS', validity: '7 Day', price: 'CFA 1500' },
+                { name: 'Welcome_24H', details: '250.0 MB, 25 Minutes, 25 SMS', validity: '24 HOURS', price: 'CFA 200' },
+                { name: 'Forfait COMBO 7J', details: '2.0 GB, 60 Minutes, 60 SMS', validity: '7 Days', price: 'CFA 2000' }
+            ],
+            data: [
+                { name: 'Data 1GB', details: '1 GB Internet', validity: '1 Day', price: 'CFA 500' },
+                { name: 'Data 5GB', details: '5 GB Internet', validity: '7 Days', price: 'CFA 2000' },
+                { name: 'Data 10GB', details: '10 GB Internet', validity: '30 Days', price: 'CFA 5000' },
+                { name: 'Data Nuit 5GB', details: '5 GB Internet (23h-6h)', validity: '7 Nuits', price: 'CFA 1000' }
+            ],
+            sms: [
+                { name: 'Forfait SMS 1 Jour', details: '120 SMS', validity: '1 jours', price: 'CFA 50' },
+                { name: 'AM_Forfait_SMS_illimites', details: '1000 SMS', validity: '1 jour', price: 'CFA 100' },
+                { name: 'Forfait SMS 3 Jours', details: '360 SMS', validity: '3 jours', price: 'CFA 100' },
+                { name: 'Forfait SMS 7 Jours', details: '1000 SMS', validity: '7 jours', price: 'CFA 300' }
+            ],
+            voice: [
+                { name: 'Voice 30min', details: '30 Minutes', validity: '1 Day', price: 'CFA 300' },
+                { name: 'Voice 60min', details: '60 Minutes', validity: '7 Days', price: 'CFA 500' },
+                { name: 'Voice 120min', details: '120 Minutes', validity: '30 Days', price: 'CFA 1500' },
+                { name: 'Voice Illimité Week-end', details: 'Appels illimités', validity: 'Week-end', price: 'CFA 1000' }
+            ]
+        };
+
+        // État de l'application
+        let state = {
+            activeSection: 'postpaye',
+            activeSubSection: 'prepaye-recharge',
+            selectedCategory: 'combo',
+            selectedPeriod: 'tous',
+            selectedOffer: null,
+            paymentMethod: null,
+            isValidNumber: null,
+            showOffers: false
+        };
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialiser les icônes Lucide
+            lucide.createIcons();
+
+            // Initialiser la page
+            initPage();
+            setupEventListeners();
+        });
+
+        function initPage() {
+            // Afficher la section active
+            showSection(state.activeSection);
+
+            // Fade in de la page
+            document.body.classList.add('opacity-100');
+        }
+
+        function setupEventListeners() {
+            // Navigation principale
+            document.querySelectorAll('[data-section]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const section = e.target.getAttribute('data-section');
+                    showSection(section);
+                });
+            });
+
+            // Sous-sections prépayé
+            document.querySelectorAll('.subsection-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const subsection = e.target.getAttribute('data-subsection');
+                    showSubsection(subsection);
+                });
+            });
+
+            // Validation du numéro de téléphone
+            const phoneInputs = [
+                'prepaye-forfait-phone',
+                'prepaye-recharge-phone',
+                'postpaye-phone'
+            ];
+
+            phoneInputs.forEach(inputId => {
+                const input = document.getElementById(inputId);
+                if (input) {
+                    input.addEventListener('input', handlePhoneChange);
+                }
+            });
+
+            // Bouton effacer numéro
+            document.getElementById('clear-phone').addEventListener('click', () => {
+                document.getElementById('prepaye-forfait-phone').value = '';
+                document.getElementById('phone-validation').classList.add('hidden');
+                document.getElementById('offers-section').classList.add('hidden');
+                document.getElementById('clear-phone').classList.add('hidden');
+            });
+
+            // Catégories d'offres
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const category = e.target.getAttribute('data-category');
+                    selectCategory(category);
+                });
+            });
+
+            // Filtres de période
+            document.querySelectorAll('.period-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const period = e.target.getAttribute('data-period');
+                    selectPeriod(period);
+                });
+            });
+
+            // Dans la fonction setupEventListeners(), ajoutez :
+            document.querySelectorAll('[data-subsection]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const section = e.target.getAttribute('data-section');
+                    const subsection = e.target.getAttribute('data-subsection');
+                    showSection(section);
+
+                    // Pour la section prépayé, afficher la sous-section spécifique
+                    if (section === 'prepaye') {
+                        setTimeout(() => {
+                            showSubsection(subsection);
+                        }, 100);
+                    }
+                });
+            });
+
+            // Modal de paiement
+            document.getElementById('close-modal').addEventListener('click', closePaymentModal);
+            document.querySelectorAll('.payment-method-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const method = e.target.closest('button').getAttribute('data-method');
+                    selectPaymentMethod(method);
+                });
+            });
+
+            // Confirmation de paiement
+            document.getElementById('confirm-payment').addEventListener('click', confirmPayment);
+
+            // Menu mobile
+            document.getElementById('mobile-menu-toggle').addEventListener('click', toggleMobileMenu);
+        }
+
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function showSection(section) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.page-section').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Afficher la section sélectionnée
+            document.getElementById(`${section}-section`).classList.remove('hidden');
+
+            // Mettre à jour l'état
+            state.activeSection = section;
+
+            // Pour la section prépayé, afficher la sous-section active par défaut
+            if (section === 'prepaye') {
+                showSubsection(state.activeSubSection);
+            }
+
+            // Fermer le menu mobile si ouvert
+            document.getElementById('nav-links').classList.remove('active');
+        }
+
+        function showSubsection(subsection) {
+            // Mettre à jour les boutons de sous-section
+            document.querySelectorAll('.subsection-btn').forEach(btn => {
+                if (btn.getAttribute('data-subsection') === subsection) {
+                    btn.classList.remove('text-gray-600', 'hover:text-red-600');
+                    btn.classList.add('text-red-600');
+                } else {
+                    btn.classList.remove('text-red-600');
+                    btn.classList.add('text-gray-600', 'hover:text-red-600');
+                }
+            });
+
+            // Cacher toutes les sous-sections
+            document.querySelectorAll('.subsection-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Afficher la sous-section sélectionnée
+            document.getElementById(subsection).classList.remove('hidden');
+
+            // Mettre à jour l'état
+            state.activeSubSection = subsection;
+
+            // Si on affiche la sous-section forfait, initialiser le tableau des offres
+            if (subsection === 'prepaye-forfait') {
+                updateOffersTable();
+            }
+        }
+
+        function handlePhoneChange(e) {
+            const value = e.target.value;
+
+            if (value.length >= 9) {
+                const isValid = validatePhoneNumber(value);
+                if (isValid) {
+                    state.showOffers = true;
+                    document.getElementById('offers-section').classList.remove('hidden');
+                }
+            } else {
+                state.isValidNumber = null;
+                state.showOffers = false;
+                document.getElementById('offers-section').classList.add('hidden');
+            }
+
+            // Afficher/masquer le bouton effacer
+            const clearBtn = document.getElementById('clear-phone');
+            if (value) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+        }
+
+        function validatePhoneNumber(number) {
+            const cleanNumber = number.replace(/\s+/g, '');
+            const is05Number = /^05\d{7}$/.test(cleanNumber);
+
+            const validationEl = document.getElementById('phone-validation');
+            validationEl.classList.remove('hidden');
+
+            if (is05Number) {
+                validationEl.innerHTML = '<span class="text-green-300 flex items-center gap-1"><i data-lucide="check" class="w-4 h-4"></i> Numéro valide</span>';
+                state.isValidNumber = true;
+            } else {
+                validationEl.innerHTML = '<span class="text-yellow-300 flex items-center gap-1"><i data-lucide="alert-circle" class="w-4 h-4"></i> Le numéro doit commencer par 05</span>';
+                state.isValidNumber = false;
+            }
+
+            lucide.createIcons();
+            return is05Number;
+        }
+
+        function selectCategory(category) {
+            state.selectedCategory = category;
+
+            // Mettre à jour les boutons de catégorie
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.remove('bg-white', 'text-gray-700', 'hover:bg-gray-100');
+                    btn.classList.add('bg-red-600', 'text-white', 'shadow-lg');
+                } else {
+                    btn.classList.remove('bg-red-600', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-gray-100');
+                }
+            });
+
+            // Mettre à jour le tableau des offres
+            updateOffersTable();
+        }
+
+        function selectPeriod(period) {
+            state.selectedPeriod = period;
+
+            // Mettre à jour les boutons de période
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                if (btn.getAttribute('data-period') === period) {
+                    btn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    btn.classList.add('bg-red-600', 'text-white');
+                } else {
+                    btn.classList.remove('bg-red-600', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                }
+            });
+
+            // Mettre à jour le tableau des offres
+            updateOffersTable();
+        }
+
+        function updateOffersTable() {
+            const offersTable = document.getElementById('offers-table-body');
+            const categoryOffers = offers[state.selectedCategory];
+
+            offersTable.innerHTML = '';
+
+            categoryOffers.forEach((offer, index) => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50 transition-colors';
+                row.innerHTML = `
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                <i data-lucide="smartphone" class="text-red-600 w-5 h-5"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">${offer.name}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">${offer.details}</td>
+                    <td class="px-6 py-4 text-gray-600">${offer.validity}</td>
+                    <td class="px-6 py-4">
+                        <span class="text-lg font-bold text-red-600">${offer.price}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <button class="buy-offer-btn bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700 transition transform hover:scale-105" data-index="${index}">
+                            ACHETER
+                        </button>
+                    </td>
+                `;
+                offersTable.appendChild(row);
+            });
+
+            // Ajouter les écouteurs d'événements pour les boutons d'achat
+            document.querySelectorAll('.buy-offer-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const index = parseInt(e.target.getAttribute('data-index'));
+                    const offer = categoryOffers[index];
+                    openPaymentModal(offer);
+                });
+            });
+
+            // Recréer les icônes
+            lucide.createIcons();
+        }
+
+        function openPaymentModal(offer) {
+            state.selectedOffer = offer;
+
+            document.getElementById('modal-offer-name').textContent = `Offre: ${offer.name}`;
+            document.getElementById('modal-offer-price').textContent = offer.price;
+
+            document.getElementById('payment-modal').classList.remove('hidden');
+            document.getElementById('payment-modal').classList.add('flex');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.add('hidden');
+            document.getElementById('payment-modal').classList.remove('flex');
+
+            state.selectedOffer = null;
+            state.paymentMethod = null;
+
+            // Réinitialiser les boutons de méthode de paiement
+            document.querySelectorAll('.payment-method-btn').forEach(btn => {
+                btn.classList.remove('border-red-600', 'bg-red-50');
+                btn.classList.add('border-gray-300', 'hover:border-red-400');
+            });
+
+            // Désactiver le bouton de confirmation
+            document.getElementById('confirm-payment').disabled = true;
+            document.getElementById('confirm-payment').classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            document.getElementById('confirm-payment').classList.remove('bg-red-600', 'text-white', 'hover:bg-red-700');
+        }
+
+        function selectPaymentMethod(method) {
+            state.paymentMethod = method;
+
+            // Mettre à jour l'apparence des boutons
+            document.querySelectorAll('.payment-method-btn').forEach(btn => {
+                if (btn.getAttribute('data-method') === method) {
+                    btn.classList.remove('border-gray-300', 'hover:border-red-400');
+                    btn.classList.add('border-red-600', 'bg-red-50');
+                } else {
+                    btn.classList.remove('border-red-600', 'bg-red-50');
+                    btn.classList.add('border-gray-300', 'hover:border-red-400');
+                }
+            });
+
+            // Activer le bouton de confirmation
+            document.getElementById('confirm-payment').disabled = false;
+            document.getElementById('confirm-payment').classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            document.getElementById('confirm-payment').classList.add('bg-red-600', 'text-white', 'hover:bg-red-700');
+        }
+
+        function confirmPayment() {
+            if (state.selectedOffer && state.paymentMethod) {
+                alert(`Paiement confirmé pour ${state.selectedOffer.name} (${state.selectedOffer.price}) via ${state.paymentMethod === 'credit' ? 'crédit téléphonique' : 'Airtel Money'}`);
+                closePaymentModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

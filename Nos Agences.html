@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtel Congo - Nos Agences</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Supprimer les puces de toutes les listes */
+.nav-links,
+.dropdown-menu,
+.sub-level,
+.sub-dropdown,
+.third-level {
+    list-style: none;
+}
+
+
+        /* Header Top */
+        .header-top {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 0;
+        }
+
+        .header-top-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+        }
+
+        .header-top-content a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .header-top-content a:hover {
+            color: #e30613;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e30613;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {      
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links li:hover>a {
+            color: #e30613;
+        }
+
+        .nav-links a.active {
+            color: #e30613;
+            border-bottom: 3px solid #e30613;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 250px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            margin-top: 0.5rem;
+            padding: 8px 0;
+        }
+
+        .nav-links li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Styles pour les sous-menus */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 250px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    margin-top: 0.5rem;
+    padding: 8px 0;
+}
+
+.dropdown-menu li {
+    position: relative;
+}
+
+.dropdown-menu a {
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+    border: none;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(227, 6, 19, 0.05);
+    color: #e30613;
+    padding-left: 25px;
+}
+
+/* Sous-menus de niveau 2 */
+.sub-level {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    margin-left: 10px;
+    padding: 8px 0;
+    z-index: 102;
+}
+
+.has-submenu:hover .sub-level {
+    opacity: 1;
+    visibility: visible;
+    margin-left: 5px;
+}
+
+.sub-level a {
+    padding: 10px 20px;
+    font-size: 13px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sub-level a:hover {
+    background: rgba(227, 6, 19, 0.05);
+    color: #e30613;
+}
+
+/* Flèches pour les sous-menus */
+.arrow {
+    font-size: 12px;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.has-submenu:hover .arrow {
+    transform: rotate(90deg);
+}
+
+        .dropdown-menu a:hover {
+            background: rgba(227, 6, 19, 0.05);
+            color: #e30613;
+            padding-left: 25px;
+        }
+
+        .dropdown-menu .arrow {
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        /* Sous-menu de second niveau */
+        .sub-dropdown {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            margin-left: 10px;
+            padding: 8px 0;
+            z-index: 102;
+        }
+
+        .dropdown-menu li:hover > .sub-dropdown {
+            opacity: 1;
+            visibility: visible;
+            margin-left: 5px;
+        }
+
+        .sub-dropdown a {
+            padding: 10px 20px;
+            font-size: 13px;
+            display: block;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .sub-dropdown a:hover {
+            background: rgba(227, 6, 19, 0.05);
+            color: #e30613;
+        }
+
+        /* Menu à 3 niveaux */
+        .sub-dropdown li {
+            position: relative;
+        }
+
+        .third-level {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            margin-left: 10px;
+            padding: 8px 0;
+            z-index: 103;
+        }
+
+        .sub-dropdown li:hover > .third-level {
+            opacity: 1;
+            visibility: visible;
+            margin-left: 5px;
+        }
+
+        .third-level a {
+            padding: 10px 20px;
+            font-size: 13px;
+            display: block;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .third-level a:hover {
+            background: rgba(227, 6, 19, 0.05);
+            color: #e30613;
+        }
+
+        /* Styles pour les éléments spéciaux en rouge */
+        .services-internet {
+            color: #e30613 !important;
+            font-weight: bold;
+        }
+
+        .roaming {
+            color: #e30613 !important;
+            font-weight: bold;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 5rem 2rem;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: #e30613;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 .highlight {
+            color: #e30613;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: black;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e30613;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #c40510;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style amélioré pour les images de boutique */
+        .shop-image {
+            width: 100%;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .shop-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .shop-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #e30613;
+            display: inline-block;
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .data-table thead {
+            background: #e30613;
+            color: white;
+        }
+
+        .data-table th {
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Coverage Page */
+        .coverage-hero {
+            background: linear-gradient(135deg, #490b0b 0%, #e30613 100%);
+            color: white;
+            padding: 5rem 2rem;
+        }
+
+        .coverage-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .coverage-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .coverage-content .highlight {
+            color: #e30613;
+        }
+
+        .coverage-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Style amélioré pour l'image de personne */
+        .person-image {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #e30613 0%, #c40510 100%);
+        }
+
+        .person-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 3rem;
+        }
+
+        .info-box h2 {
+            color: #e30613;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 2rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 500px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            color: #666;
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            color: #e30613;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            padding: 60px 80px 30px;
+            margin-top: 4rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-grid-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .footer-grid-column h5 {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        .footer-grid-column ul {
+            list-style: none;
+        }
+
+        .footer-grid-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-grid-column ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-grid-column ul li a:hover {
+            color: #e30613;
+        }
+
+        .footer-bottom-section {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding-top: 20px;
+        }
+
+        .footer-bottom-links-extended {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-bottom-links-extended a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links-extended a:hover {
+            color: #e30613;
+        }
+
+        .copyright-section {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .social-link:hover {
+            background: #e30613;
+            color: white;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #e30613;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 5px 20px rgba(227, 6, 19, 0.4);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container,
+            .coverage-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1,
+            .coverage-content h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .data-table {
+                font-size: 0.9rem;
+                overflow-x: auto;
+                display: block;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.8rem;
+                white-space: nowrap;
+            }
+
+            .header-top-content {
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .footer-grid-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            footer {
+                padding: 40px 20px 20px;
+            }
+
+            .shop-image,
+            .person-image {
+                height: 250px;
+            }
+            
+            .person-image {
+                max-width: 100%;
+            }
+
+            /* Navigation mobile */
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                margin-top: 0;
+                display: none;
+            }
+
+            .nav-links li:hover .dropdown-menu,
+            .dropdown-menu.active {
+                display: block;
+            }
+
+            .sub-dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                margin-left: 15px;
+                display: none;
+            }
+
+            .dropdown-menu li:hover .sub-dropdown,
+            .sub-dropdown.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="header-top-content">
+            <a href="index.html">INDIVIDUEL</a>
+            <a href="entreprise.html">ENTREPRISE</a>
+            <a href="broadband.html">BROADBAND</a>
+            <a href="airtel-money.html">AIRTEL MONEY PORTAL</a>
+            <a href="about.html">À PROPOS DE NOUS</a>
+        </div>
+    </div>
+
+    <!-- Navigation Principale -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="image/Airtel_Logo.jpg" alt="Airtel Congo" class="logo-img">
+                airtel
+            </a>
+
+            <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                ☰
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <!-- PAYEZ ET RECHARGEZ -->
+               <li>
+    <a href="Payez.html">PAYEZ ET RECHARGEZ</a>
+    <ul class="dropdown-menu">
+        <!-- Postpayé avec sous-menu -->
+        <li class="has-submenu">
+            <a href="#" data-section="postpaye">Postpayé <span class="arrow">›</span></a>
+            <ul class="sub-level">
+                <li><a href="#" data-section="postpaye" data-subsection="postpaye-payment">Paiement de facture en ligne</a></li>
+            </ul>
+        </li>
+
+        <!-- Prépayé avec sous-menu -->
+        <li class="has-submenu">
+            <a href="#" data-section="prepaye">Prépayé <span class="arrow">›</span></a>
+            <ul class="sub-level">
+                <li><a href="#" data-section="prepaye" data-subsection="prepaye-recharge">Rechargez un compte prépayé</a></li>
+                <li><a href="#" data-section="prepaye" data-subsection="prepaye-forfait">Activez un forfait Internet</a></li>
+            </ul>
+        </li>
+
+        <!-- Broadband (sans sous-menu) -->
+        <li><a href="#" data-section="broadband">Broadband</a></li>
+    </ul>
+</li>
+
+                <!-- SERVICES -->
+                <li>
+                    <a href="services.html">SERVICES</a>
+                    <ul class="dropdown-menu">
+                        <!-- PREPAYÉ - Niveau 1 -->
+                        <li>
+                            <a href="#">Prepayé <span class="arrow">›</span></a>
+                            <ul class="sub-dropdown">
+                                <!-- Appels & SMS - Niveau 2 -->
+                                <li>
+                                    <a href="#">Appels & SMS <span class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="appels-locaux.html">Appels locaux</a></li>
+                                        <li><a href="appels-internationaux.html">Appels internationaux</a></li>
+                                        <li><a href="sms.html">SMS</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Services Internet - Niveau 2 -->
+                                <li>
+                                    <a href="#" class="services-internet">Services Internet <span class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="forfaits-internet.html">Forfaits internet</a></li>
+                                        <li><a href="faq-internet.html">Foire aux questions</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Roaming - Niveau 2 -->
+                                <li>
+                                    <a href="#" class="roaming">Roaming <span class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="airtel-world.html">Airtel world</a></li>
+                                        <li><a href="reseau-unique.html">Réseau Unique</a></li>
+                                        <li><a href="free-roaming.html">Free Roaming</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Services à valeur ajoutée - Niveau 2 -->
+                                <li>
+                                    <a href="#">Services à valeur ajoutée <span class="arrow">›</span></a>
+                                    <ul class="third-level">
+                                        <li><a href="musique.html">Musique</a></li>
+                                        <li><a href="divertissement.html">Divertissement</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Taxi Connect - Niveau 2 -->
+                                <li><a href="taxi-connect.html">Taxi Connect</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- NOS AGENCES -->
+                <li>
+                    <a href="Nos Agences.html" class="active">NOS AGENCES</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="showPage(1); return false;">Airtel Shop</a></li>
+                        <li><a href="#" onclick="showPage(3); return false;">Distributeurs</a></li>
+                        <li><a href="#" onclick="showPage(2); return false;">Couverture réseau</a></li>
+                    </ul>
+                </li>
+
+                <!-- AIRTEL MONEY -->
+                <li>
+                    <a href="airtel-money.html">AIRTEL MONEY</a>
+                </li>
+
+                <!-- BESOIN D'AIDE -->
+                <li>
+                    <a href="aide.html">BESOIN D'AIDE</a>
+                </li>
+
+                <!-- E-SIM -->
+                <li><a href="esim.html">E-SIM</a></li>
+
+                <!-- PROMOTIONS -->
+                <li>
+                    <a href="promotions.html">PROMO KELASI</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page 1: Boutiques -->
+    <div class="page active" id="page1">
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Visitez nos <span class="highlight">boutiques</span> pour tout besoin</h1>
+                    <p>Retrouvez ici la liste de toutes nos boutiques sur toute l'étendue du territoire Congolais</p>
+                </div>
+                <div class="hero-image">
+                    <div class="shop-image">
+                        <img src="image/Shop_Airtel.png" alt="Boutique Airtel">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Nos Boutiques</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Boutique</th>
+                        <th>Localisation</th>
+                        <th>Heures de Service</th>
+                        <th>Numéro de Téléphone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td><strong>TIE TIE</strong></td>
+                        <td>Av de l'indépendance en diagonale marché Savon</td>
+                        <td>Lundi à Vendredi, 8H00 à 18H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AEROPORT PNR</strong></td>
+                        <td>Dans l'enceinte Aéroport Aghostino Neto PNR</td>
+                        <td>Lundi à Samedi, 7H30 à 19H00<br>Dimanche, 9H30 à 19H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HQ BRAZZAVILLE</strong></td>
+                        <td>Av Orsi ex Mono prix-Rondpoint la Gare</td>
+                        <td>Lundi à Vendredi, 8H00 à 18H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LÉMINA</strong></td>
+                        <td>Av de l'OUA du centre Sportif de Makelekele</td>
+                        <td>Lundi à Vendredi, 8H00 à 18H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AEROPORT BZV</strong></td>
+                        <td>Dans l'enceinte Aéroport Maya Maya BZV</td>
+                        <td>Lundi à Samedi, 7H30 à 19H00<br>Dimanche, 9H30 à 19H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LOANDJILI</strong></td>
+                        <td>Route Nation num 1 En face hôpital de Loandjili</td>
+                        <td>Lundi à Vendredi, 8H00 à 18H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DOLISIE CV</strong></td>
+                        <td>Av de la République en face de la station PUMA</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HQ POINTE NOIRE</strong></td>
+                        <td>Av Charles de gaulles, en face de la pharmacie croix du Sud</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NKAYI</strong></td>
+                        <td>Av de la Révolution</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DOLISIE GM</strong></td>
+                        <td>Dolisie marché central</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 9H00 à 14H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OUESSO</strong></td>
+                        <td>Av Marien NGOUABI</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 9H00 à 14H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IMPFONDO</strong></td>
+                        <td>Quartier Angola libre, en face de la pharmacie MOKA</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 9H00 à 14H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OYO</strong></td>
+                        <td>Route Nationale num 2 en face de l'hôpital Maman MWE EBARA</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 9H00 à 14H00</td>
+                        <td>55810081</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Petit Chose</strong></td>
+                        <td>sis au 135 Rue Ndolo Quartier Petit chose à Talangaï</td>
+                        <td>Lundi à Vendredi, 8H00 à 17H00<br>Samedi, 8H30 à 17H00</td>
+                        <td>55810081</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Page 2: Couverture Réseau -->
+    <div class="page" id="page2">
+        <section class="coverage-hero">
+            <div class="coverage-content">
+                <div>
+                    <h1>Le réseau le plus <span class="highlight">grand</span> et le plus <span class="highlight">stable</span> au Congo.</h1>
+                </div>
+                <div class="person-image">
+                    <img src="image/Shop_Airtel.png" alt="Couverture réseau Airtel">
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="info-box">
+                <h2>Couverture Réseau</h2>
+                <p>Le réseau Airtel au Congo est étendu - et continue de grandir pour vous atteindre partout. 
+                Nous ajoutons toujours de nouvelles villes et régions à notre couverture afin que vous puissiez profiter d'un service qui ne cesse de s'améliorer.
+                La liste et les cartes ci-dessous vous indiquent les zones couvertes par le service Airtel.</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Carte de couverture réseau</h3>
+                    <p>Cette carte montre les zones de couverture Airtel à travers le Congo</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page 3: Agences -->
+    <div class="page" id="page3">
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Visitez nos <span class="highlight">agences</span></h1>
+                    <p>A l'échelle nationale pour un service accueillant et chaleureux.</p>
+                </div>
+                <div class="hero-image">
+                    <div class="shop-image">
+                        <img src="image/Shop_Airtel.png" alt="Agences Airtel">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Distributeurs Airtel</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nom du partenaire</th>
+                        <th>Adresse</th>
+                        <th>Numéro de téléphone</th>
+                        <th>Zone</th>
+                        <th>Localité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AMADOU ABDOULAYE</strong></td>
+                        <td>Oyo</td>
+                        <td>242056420739</td>
+                        <td>RURAL NORD</td>
+                        <td>OUESSO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IKIA DESTIN</strong></td>
+                        <td>Quartier Nkouikou PNR</td>
+                        <td>242040728472</td>
+                        <td>POINTE NOIRE</td>
+                        <td>POINTE-NOIRE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BEIHIM YAFDOU</strong></td>
+                        <td>Oyo</td>
+                        <td>242044170707<br>242053170707</td>
+                        <td>RURAL NORD</td>
+                        <td>OYO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TSIKA ALAIN</strong></td>
+                        <td>Dolisie (En face de la morgue municipale)</td>
+                        <td>242057448897</td>
+                        <td>RURAL SUD</td>
+                        <td>DOLISIE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EDJO</strong></td>
+                        <td>Etoumbi (En face de la station total)</td>
+                        <td>242055194977</td>
+                        <td>RURAL NORD</td>
+                        <td>OWANDO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DJOUGUELA YVES CARLOS</strong></td>
+                        <td>Oyo</td>
+                        <td>242055495529</td>
+                        <td>RURAL NORD</td>
+                        <td>OYO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ELENGA PUMBA ROCK</strong></td>
+                        <td>154, Rue Itoumbi (Ouenze)</td>
+                        <td>242055180095</td>
+                        <td>BRZ NORD</td>
+                        <td>BRAZZAVILLE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MOULOUNGUI JEAN THEODORE</strong></td>
+                        <td>Nianga Village</td>
+                        <td>242055462115</td>
+                        <td>RURAL SUD</td>
+                        <td>NYANGA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NKODIA PÉLAGIE</strong></td>
+                        <td>Kinkala</td>
+                        <td>242055139375</td>
+                        <td>RURAL NORD</td>
+                        <td>KINKALA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IKIA DESTIN</strong></td>
+                        <td>Ouesso (Quartier Aeroport)</td>
+                        <td>242057463241</td>
+                        <td>RURAL NORD</td>
+                        <td>OUESSO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MOPOKO RACHEL</strong></td>
+                        <td>Gamboma (vers le grand marché de Gamboma)</td>
+                        <td>242053707900</td>
+                        <td>RURAL NORD</td>
+                        <td>GAMBOMA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DIAKABANA BERNARDIN</strong></td>
+                        <td>Avenue de l'indépendance après contre raille fond tetie (Arro 3. Tietie)</td>
+                        <td>242055638824<br>242053205353</td>
+                        <td>POINTE NOIRE</td>
+                        <td>POINTE-NOIRE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LEMINE HAMED</strong></td>
+                        <td>Avenue 15 Août Vers grand marché Cascador (Arro. 1 Lumumba)</td>
+                        <td>242055506666<br>242055181559</td>
+                        <td>POINTE NOIRE</td>
+                        <td>POINTE-NOIRE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OULD ABOURAMANE MINE</strong></td>
+                        <td>Dolisie (Grand marché en face station total)</td>
+                        <td>242055181702</td>
+                        <td>RURAL SUD</td>
+                        <td>DOLISIE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LOUNIANGA</strong></td>
+                        <td>Impfondo</td>
+                        <td>242056518595</td>
+                        <td>RURAL NORD</td>
+                        <td>IMPFONDO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MOHAMED KHYAR</strong></td>
+                        <td>51, Rue Likouala (Potot-Poto)</td>
+                        <td>242056521389</td>
+                        <td>BRZ SUD</td>
+                        <td>BRAZZAVILLE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DINGA NUALASSAMI</strong></td>
+                        <td>Loutété (Shop Modèle gare de loutété)</td>
+                        <td>242055186263</td>
+                        <td>RURAL SUD</td>
+                        <td>LOUTETE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>YOUSOUF DIAHOU</strong></td>
+                        <td>Oyo</td>
+                        <td>242056528001</td>
+                        <td>RURAL NORD</td>
+                        <td>OWANDO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>   
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid-section">
+            <div class="footer-grid-column">
+                <h5>A propos d'Airtel</h5>
+                <ul>
+                    <li><a href="#">Accès rapide</a></li>
+                    <li><a href="#">Aide</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Carrière</h5>
+                <ul>
+                    <li><a href="#">Actualités</a></li>
+                    <li><a href="#">Couverture</a></li>
+                    <li><a href="#">Online Safety</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Media</h5>
+                <ul>
+                    <li><a href="#">Programmes sociaux/CSR</a></li>
+                    <li><a href="#">Nos Boutiques</a></li>
+                    <li><a href="#">Besoin de Suggestion</a></li>
+                </ul>
+            </div>
+            <div class="footer-grid-column">
+                <h5>Airtel Money</h5>
+                <ul>
+                    <li><a href="#">Catalogue d'interconnexion</a></li>
+                    <li><a href="#">Numéros utiles</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-section">
+            <div class="footer-bottom-links-extended">
+                <a href="#">NOUS CONTRACTER</a>
+                <a href="#">DROITS D'AUTEUR</a>
+                <a href="#">TERMES ET CONDITIONS</a>
+                <a href="#">TERMES ET CONDITIONS GSM</a>
+                <a href="#">AVIS DE CONFIDENTIALITÉ</a>
+            </div>
+        </div>
+
+        <div class="copyright-section">
+            <p>© 2024 Airtel Africa. Tous les droits sont réservés.</p>
+            <p style="margin-top: 10px;">RETOUR AU SOMMET</p>
+        </div>
+
+        <div class="social-links" style="justify-content: center; margin-top: 20px;">
+            <a href="#" class="social-link">T</a>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">↑</a>
+
+    <script>
+        function showPage(pageNum) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById('page' + pageNum).classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Back to top functionality
+        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
+
+        // Mobile submenu functionality
+        document.querySelectorAll('.has-submenu > a, .dropdown-menu > li > a').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const submenu = this.nextElementSibling;
+                    if (submenu) {
+                        submenu.classList.toggle('active');
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</body>
+</html>

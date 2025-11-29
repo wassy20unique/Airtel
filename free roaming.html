@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forfaits Free Roaming - Airtel Congo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #li {
+            width: 100%;
+            /* prend toute la largeur de la card */
+            height: 100%;
+            /* prend toute la hauteur de la card */
+          
+            object-position: center;
+            /* centrer l’image */
+        }
+
+        .hero-container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            background-color: #e60000;
+        }
+
+        .hero-content {
+            flex: 1;
+            background: linear-gradient(135deg, #e60000 0%, #b30000 100%);
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .hero-image {
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            /* Ajouté pour un meilleur contrôle */
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Changé de 'contain' à 'cover' pour remplir l'espace */
+            object-position: center;
+            /* Centrer l'image */
+        }
+
+
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .country-selector {
+            padding: 25px 30px;
+            background: #e60000;
+            color: white;
+        }
+
+        .country-label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .country-select {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 2px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 45px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .country-select:hover {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .table-container {
+            padding: 0;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        }
+
+        .data-table thead {
+            background: #f8f9fa;
+        }
+
+        .data-table th {
+            padding: 18px 25px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .data-table th:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25px;
+            right: 25px;
+            height: 2px;
+            background: #e60000;
+        }
+
+        .data-table tbody tr {
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f0f7ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table td {
+            padding: 18px 25px;
+            font-size: 14px;
+            color: #555;
+            border: none;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        .data-table td:first-child {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .data-table td:last-child {
+            text-align: right;
+            font-weight: 700;
+            color: #e60000;
+            font-size: 16px;
+        }
+
+        .info-section {
+            padding: 25px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .info-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .info-list {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .info-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .table-footer {
+            padding: 25px 30px;
+            background: #f8f9fa;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-link {
+            color: #e60000;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                border-radius: 8px;
+            }
+
+            .country-selector {
+                padding: 20px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 15px;
+                font-size: 13px;
+            }
+
+            .data-table td:last-child {
+                font-size: 15px;
+            }
+
+            .info-section {
+                padding: 20px;
+            }
+
+            .table-footer {
+                padding: 20px;
+            }
+        }
+
+        /* Styles pour le reste de votre page (conservés) */
+        .hero-container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            background-color: #e60000;
+        }
+
+        .hero-content {
+            flex: 1;
+            background: linear-gradient(135deg, #e60000 0%, #b30000 100%);
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            width: fit-content;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1 {
+            color: white;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .subtitle {
+            color: whitesmoke;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            max-width: 500px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-image {
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-content {
+                padding: 30px 24px;
+                height: auto;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+
+        .top-nav {
+            background-color: #ffffff;
+            padding: 10px 80px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .top-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .top-nav a:hover {
+            color: #e60000;
+        }
+
+        .main-nav {
+            background-color: #ffffff;
+            padding: 20px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e60000;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo-subtitle {
+            font-size: 8px;
+            color: #666;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .main-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .main-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .main-menu a:hover {
+            color: #e60000;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            border-top: 3px solid #e60000;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-content li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-content li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            font-weight: normal;
+            text-transform: none;
+            transition: background-color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f9f9f9;
+            color: #e60000;
+        }
+
+        .submenu {
+            position: relative;
+        }
+
+        .submenu-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
+        }
+
+        .submenu:hover .submenu-content {
+            display: block;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 80px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-brand p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.8;
+            margin: 20px 0 25px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: #e60000;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-column ul li a:hover {
+            color: #e60000;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 30px auto 0;
+        }
+
+        .footer-bottom p {
+            color: #666;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-bottom-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #e60000;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #e60000;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 5px 20px rgba(230, 0, 0, 0.4);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation supérieure -->
+    <nav class="top-nav">
+        <a href="individuel">INDIVIDUEL</a>
+        <a href="entreprise">ENTREPRISE</a>
+        <a href="broadband">BROADBAND</a>
+        <a href="money-portal">AIRTEL MONEY PORTAL</a>
+        <a href="apropos">À PROPOS DE NOUS</a>
+    </nav>
+
+    <!-- Navigation principale -->
+    <nav class="main-nav">
+        <div class="logo">
+            <div>
+                <div class="logo-text">airtel</div>
+                <div class="logo-subtitle">A REASON TO IMAGINE</div>
+            </div>
+        </div>
+
+        <div class="main-menu">
+            <a href="payez">PAYEZ ET RECHARGEZ ▼</a>
+
+            <!-- Menu déroulant SERVICES -->
+            <div class="dropdown">
+                <a href="services">SERVICES ▼</a>
+                <div class="dropdown-content">
+                    <ul>
+                        <li class="submenu">
+                            <a href="#">Prépayé</a>
+                            <div class="submenu-content">
+                                <ul>
+                                    <li class="submenu">
+                                        <a href="#">Appel & SMS</a>
+                                        <div class="submenu-content">
+                                            <ul>
+                                                <li><a href="appel locaux.html">Appels locaux</a></li>
+
+                                                <li><a href="sms.html">SMS</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li><a href="services internet.html">Services Internet</a></li>
+                                    <li><a href="roaming.html">Roaming</a></li>
+                                    <li><a href="VAS.html">Services à valeur ajoutée</a></li>
+                                    <li><a href="Taxi connect.html">Taxi Connect</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <a href="agences">NOS AGENCES ▼</a>
+            <a href="airtel-money">AIRTEL MONEY</a>
+            <a href="aide">BESOIN D'AIDE</a>
+            <a href="esim">E-SIM</a>
+            <a href="promo">PROMO KELASI</a>
+        </div>
+    </nav>
+
+    <div class="hero-container">
+        <!-- CONTENU GAUCHE -->
+        <div class="hero-content">
+            <span class="badge">FREE ROAMING</span>
+
+            <h1>FORFAITS FREE ROAMING</h1>
+
+            <p class="subtitle">
+                Communiquez à l'étranger au tarif local du Congo Brazzaville. Restez connecté où que vous soyez sans
+                frais supplémentaires.
+            </p>
+
+        </div>
+
+        <!-- IMAGE DROITE -->
+        <div class="hero-image">
+            <img id="li" src="image/mp.png" alt="Personne utilisant son téléphone à l'étranger">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="country-selector">
+            <div class="country-label">Free Roaming</div>
+
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>SERVICES</th>
+                        <th>TARIFS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Appel Local</td>
+                        <td>158 frs/min</td>
+                    </tr>
+                    <tr>
+                        <td>Appel vers le Congo</td>
+                        <td>158 frs/min</td>
+                    </tr>
+                    <tr>
+                        <td>Appel à l'international</td>
+                        <td>689,5 frs/min</td>
+                    </tr>
+                    <tr>
+                        <td>Coût de la réception d'appel après 300 minutes</td>
+                        <td>303,6 frs/min</td>
+                    </tr>
+                    <tr>
+                        <td>SMS/texto</td>
+                        <td>50 frs/SMS</td>
+                    </tr>
+                    <tr>
+                        <td>DATA/10kb après 500 MG</td>
+                        <td>0,7 Frs/10KB</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-section">
+            <div class="info-title">Comment se fait l'activation?</div>
+            <div class="info-content">
+                L'activation est automatique.
+            </div>
+
+            <div class="info-title" style="margin-top: 25px;">Quels sont les avantages?</div>
+            <ul class="info-list">
+                <li>Les réceptions d'appels et SMS sont gratuites</li>
+                <li>La communication se fait au tarif du Congo dans le pays visité ou de destination</li>
+            </ul>
+        </div>
+
+        <div class="table-footer">
+            <p class="footer-text">
+                Pour plus d'informations, consultez notre site web<br>
+                <a href="https://www.airtel.cg" class="footer-link">www.airtel.cg</a> ou composez le
+                <strong>*121#</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text">airtel</div>
+                <p>Airtel Congo - Votre partenaire de confiance pour la téléphonie mobile, l'internet et les services
+                    financiers mobiles au Congo.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">𝕏</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">▶</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>À propos d'Airtel</h4>
+                <ul>
+                    <li><a href="#">Qui sommes-nous</a></li>
+                    <li><a href="#">Carrière</a></li>
+                    <li><a href="#">Actualités</a></li>
+                    <li><a href="#">Investisseurs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Accès rapide</h4>
+                <ul>
+                    <li><a href="#">Recharge</a></li>
+                    <li><a href="#">Forfaits</a></li>
+                    <li><a href="#">Airtel Money</a></li>
+                    <li><a href="#">Assistance</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Centre d'aide</a></li>
+                    <li><a href="#">Contactez-nous</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Agences</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Conditions d'utilisation</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Airtel Congo. Tous droits réservés.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Accessibilité</a>
+                <a href="#">Plan du site</a>
+                <a href="#">Paramètres des cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">↑</a>
+</body>
+
+</html>
