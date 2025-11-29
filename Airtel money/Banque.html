@@ -79,6 +79,21 @@
             color: var(--airtel-red);
             font-weight: 600;
         }
+         .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--airtel-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
 
         .portal-link {
             color: var(--dark-grey);
@@ -387,10 +402,13 @@
     <header>
         <div class="header-content">
             <div class="logo-container">
-                <div class="logo">airtel</div>
-                <div class="logo-subtitle">money</div>
+                <a href="index.html" class="logo">
+                <img src="../image/Airtel_Logo.jpg" alt="Airtel Congo" class="logo-img">
+                airtel
+            </a>
+
             </div>
-            <a href="#" class="portal-link">AIRTEL MONEY PORTAL</a>
+            <a href="../airtel-money.html" class="portal-link">Airtel Money</a>
         </div>
     </header>
 
